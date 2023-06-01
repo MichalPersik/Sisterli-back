@@ -3,3 +3,11 @@
 ################################################################################
 
 /Sisterli/obj
+/Sisterli/bin/Debug/net6.0
+/Sisterli/.vs
+/SisterliBL/bin/Debug/net6.0
+/SisterLiDAL/bin/Debug/net6.0
+/SisterLiDAL/obj
+/SisterliDTO/bin/Debug/net6.0
+/SisterliDTO/obj
+/SisterliBL/obj
