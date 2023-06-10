@@ -62,7 +62,15 @@ namespace SisterliBL
 
         }
 
+        public List<AgeChild> GetAllAgeChild()
+        {
+            return userDAL.GetAllAgeChild();
+        }
 
+        public List<HoursAvailble> GetAllhoursAvailble()
+        {
+            return userDAL.GetAllhoursAvailble();
+        }
         //  קבלת ת"ז וסיסמה והחזרת פרטים של משתמש
         public UserDTO getUserByIdAndPassword(string id, string password)
         {
@@ -74,7 +82,7 @@ namespace SisterliBL
             //momdto mom = mombl.getmombyid(id);
             //if (mom != null)
             //{
-            //    mom = mapper.map(user, mom);
+            ////    mom = mapper.map(user, mom);
             //    return mom;
             //}
             //else
@@ -130,6 +138,11 @@ namespace SisterliBL
         }
 
         public void UpdateUser(UserDTO userSisterli)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserDTO GetUserById(int id)
         {
             throw new NotImplementedException();
         }

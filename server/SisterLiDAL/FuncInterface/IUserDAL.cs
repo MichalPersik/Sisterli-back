@@ -14,6 +14,8 @@ namespace SisterLiDAL
         void CreateUser(User userSisterli);
         void UpdateUser(User userSisterli);
         void deleteUser(User userSisterli);
+        List<AgeChild> GetAllAgeChild();
+        List<HoursAvailble> GetAllhoursAvailble();
 
 
     }

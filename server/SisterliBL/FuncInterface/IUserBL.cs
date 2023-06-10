@@ -15,7 +15,9 @@ namespace SisterliBL
         void CreateUser(UserDTO userMom);
         void UpdateUser(UserDTO userSisterli);
         void deleteUser(UserDTO userSisterli);
-
+        List<AgeChild> GetAllAgeChild();
+        List<HoursAvailble> GetAllhoursAvailble();
+        UserDTO GetUserById(int id);
 
 
     }

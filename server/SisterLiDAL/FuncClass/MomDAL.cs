@@ -92,7 +92,10 @@ namespace SisterLiDAL
                     using (var db = new SisterliContext())
                     {
                         var myMom = db.Moms.Include(y => y.IdUserNavigation).FirstOrDefault(x => x.IdUser == idUser);
-                        return myMom;
+                        if (myMom != null)
+                            return myMom;
+                        else
+                            return new Mom();
                     }
                 }
                 else

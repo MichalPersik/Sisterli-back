@@ -57,9 +57,9 @@ namespace SisterliAPI.Controllers
         // [Route("addBabysiter")]
         [Route("[action]")]
 
-        public bool addBabysiter(BabysiterDTO Babysiter)
+        public bool addBabysiter(BabysiterDTO babysiter)
         {
-            return _BabysiterBL.CreateBabysitter(Babysiter);
+            return _BabysiterBL.CreateBabysitter(babysiter);
         }
 
         [HttpPut()]

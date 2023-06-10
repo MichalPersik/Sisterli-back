@@ -39,12 +39,11 @@ namespace SisterLiDAL
                 {
                     //myBabySiter.AgesChildren = null;
                    // myBabySiter.HoursAvailble = null;
-                    var user = db.Users.Where(u => u.Id == myBabySiter.IdUserNavigation.Id).FirstOrDefault();
-                    if (user == null)
-                    {
+                    //var user = db.Users.Where(u => u.Id == myBabySiter.IdUserNavigation.Id).FirstOrDefault();
+                    //if (user == null)
+                    //{
                         try
                         {
-
                             db.Babysiters.Add(myBabySiter);
                             db.SaveChanges();
                             return true;
@@ -54,11 +53,11 @@ namespace SisterLiDAL
                             Console.WriteLine("myBabySiter not captured or already exists");
                             return false;
                         }
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    //}
+                    //else
+                    //{
+                    //    return false;
+                    //}
                 }
             }
             catch
@@ -87,7 +86,6 @@ namespace SisterLiDAL
                     {
                         var myBabySitter = db.Babysiters.Include(y => y.IdUserNavigation).FirstOrDefault(x => x.IdUser == idUser);
                         return myBabySitter;
-
                     }
                 }
                 else

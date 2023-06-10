@@ -9,6 +9,40 @@ namespace SisterLiDAL
 
         //SisterliContext _Sisterli;
         User myUser = new User(); // אוביקט מסוג משתמש גלובלי לכל השיכבה
+        public List<AgeChild> GetAllAgeChild()
+        {
+            try
+            {
+                using (var db = new SisterliContext())
+                {
+                    List<AgeChild> lac= db.AgeChildren.ToList();
+                    return lac;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("User not captured or already exists");
+                return null;
+            }
+        }
+
+        public List<HoursAvailble> GetAllhoursAvailble()
+        {
+            try
+            {
+                using (var db = new SisterliContext())
+                {
+                    List<HoursAvailble> ha = db.HoursAvailbles.ToList();
+                    return ha;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("User not captured or already exists");
+                return null;
+            }
+        }
+
 
 
         //  קבלת ת"ז וסיסמה והחזרת פרטים של משתמש
