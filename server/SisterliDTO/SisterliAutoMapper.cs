@@ -17,9 +17,8 @@ namespace SisterliDTO
             CreateMap<Babysiter, BabysiterDTO>();
             CreateMap<BabysiterDTO, Babysiter>();
             CreateMap<BabysiterDTO, UserDTO>();
-            CreateMap<UserDTO, BabysiterDTO>();
             CreateMap<BabysiterDTO, UserDTO>();
-            CreateMap<UserDTO, BabysiterDTO>();
+            CreateMap<UserDTO, User>();
 
             CreateMap<Request, RequestDTO>();
             CreateMap<RequestDTO, Request>();

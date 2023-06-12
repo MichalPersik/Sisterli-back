@@ -51,7 +51,6 @@ namespace SisterliBL.FuncClass
 
         {
            /// myBabysiter.AgesChildren = null;לבדוק מה עם שורה זו
-            myBabysiter.IdUserNavigation = null;
             Babysiter Babysiter = mapper.Map<Babysiter>(myBabysiter);
             return babysiterDAL.UpdateBabySitter(Babysiter);
         }

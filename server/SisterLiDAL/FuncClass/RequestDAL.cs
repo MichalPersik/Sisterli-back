@@ -32,6 +32,7 @@ namespace SisterLiDAL.FuncClass
                     {
                         try
                         {
+                            myRequest.CreatedTime = DateTime.Now;
                             db.Requests.Add(myRequest);
                             db.SaveChanges();
                             return true;
@@ -89,7 +90,8 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                    allRequest = db.Requests.ToList<Request>();
+                    allRequest = db.Requests.Include(r=>r.IdMomNavigation).Include(m=>m.IdMomNavigation.IdUserNavigation)
+                        .ToList<Request>().FindAll(x=>x.Status == 1 && !CheckTimeIsHover(x.Day));
                     //db.SaveChanges();
                     // return allUsers;
                 }
@@ -100,7 +102,11 @@ namespace SisterLiDAL.FuncClass
             }
             return allRequest;
         }
-
+        private bool CheckTimeIsHover(DateTime date)
+        {
+            var dateToDay = DateTime.Today;
+            return date.Date < dateToDay;
+        }
 
 
 

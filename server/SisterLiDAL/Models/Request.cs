@@ -10,6 +10,7 @@ public partial class Request
     public int? IdBs { get; set; }
 
     public int? IdMom { get; set; }
+    public DateTime CreatedTime { get; set; }
 
     public DateTime Day { get; set; }
 
