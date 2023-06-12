@@ -26,7 +26,7 @@ namespace SisterliDTO.Model
 
         //public virtual HoursAvailble? HoursAvailbleNavigation { get; set; }
 
-        public virtual UserDTO IdUserNavigation { get; set; } = null!;
+        public UserDTO IdUserNavigation { get; set; }
 
     }
 }

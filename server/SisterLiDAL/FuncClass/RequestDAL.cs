@@ -89,7 +89,7 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                    allRequest = db.Requests.ToList<Request>();
+                    allRequest = db.Requests.Include(r=>r.IdMomNavigation).Include(m=>m.IdMomNavigation.IdUserNavigation).ToList<Request>();
                     //db.SaveChanges();
                     // return allUsers;
                 }

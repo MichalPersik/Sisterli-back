@@ -51,11 +51,12 @@ namespace SisterliBL.FuncClass
         public List<RequestDTO> GetAllRequest()
         {
             List<Request> AllRequest = requestDAL.GetAllRequests();
-            List<RequestDTO> r = new List<RequestDTO>();
+            List<RequestDTO> r = mapper.Map<List<Request>, List<RequestDTO>>(AllRequest);
             for (int i = 0; i < AllRequest.Count; i++)
             {
-                r.Add(mapper.Map<Request, RequestDTO>(AllRequest[i]));
-            }
+                r[i].LastName = AllRequest[i].IdMomNavigation?.IdUserNavigation?.LastName;
+                r[i].City= AllRequest[i].IdMomNavigation?.IdUserNavigation?.City;
+            }     
             return r;
         }
     }
