@@ -31,6 +31,8 @@ namespace Sisterli.Controllers
 
         [HttpPost]
         //[Route("addMom")]
+        [Route("[action]")]
+
         public bool addMom(MomDTO mom)
         {
           return  _momBL.CreateMom(mom);
@@ -38,6 +40,7 @@ namespace Sisterli.Controllers
 
         [HttpPut()]
         //[Route("UpdateMom")]
+        [Route("[action]")]
         public bool UpdateMom(MomDTO mom)
         {
          return  _momBL.UpdateMom(mom);

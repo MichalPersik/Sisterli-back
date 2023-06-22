@@ -11,7 +11,7 @@ namespace SisterliDTO.Model
     public class RequestDTO
     {
         public int Id { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public int? IdBs { get; set; }
     
         public int? IdMom { get; set; }
@@ -40,17 +40,17 @@ namespace SisterliDTO.Model
         public string LastName { get; set; }
         // [JsonIgnore]
 
-        //  public virtual AgeChild? IdAgeChildrenNavigation { get; set; }
+        // public virtual AgeChild? IdAgeChildrenNavigation { get; set; }
         // [JsonIgnore]
 
         //public virtual Babysiter? IdBsNavigation { get; set; }
         // [JsonIgnore]
 
 
-        // public virtual Mom IdMomNavigation { get; set; }
+        public virtual MomDTO IdMomNavigation { get; set; }
         // [JsonIgnore]
 
 
-        //  public virtual StatusRequest StatusNavigation { get; set; }
+        // public virtual StatusRequest StatusNavigation { get; set; }
     }
 }

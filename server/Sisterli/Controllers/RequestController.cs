@@ -30,8 +30,8 @@ namespace Sisterli.Controllers
         }
 
         // PUT api/<ValuesController>/5
-        [HttpPut()]
-        public bool PutRequest(RequestDTO Request)
+        [HttpPut]
+        public bool PutRequest([FromBody] RequestDTO Request)
         {
             return _IRequestBL.UpdateRequest(Request);
         }
@@ -41,12 +41,21 @@ namespace Sisterli.Controllers
         public List<RequestDTO> GetAllRequest()
         {
             return _IRequestBL.GetAllRequest();
-        } 
-        // DELETE api/<ValuesController>/5
-        //[HttpDelete("{id}")]
-        //public bool DeleteRequest(RequestDTO Request)
-        //{
-        //    return _IRequestBL.DeleteRequest(Request);
-        //}
+        }
+
+        [HttpGet]
+        [Route("[action]/{babysiterId}")]
+        public List<RequestDTO> GetClosedRequestsToBs(int babysiterId)
+        {
+            return _IRequestBL.GetClosedRequestsToBs(babysiterId);
+        }
+
+        [HttpGet]
+        [Route("[action]/{momId}")]
+        public List<RequestDTO> getAllRequestsOfMom(int momId)
+        {
+            return _IRequestBL.getAllRequestsOfMom(momId);
+        }
+
     }
 }

@@ -13,6 +13,8 @@ namespace SisterLiDAL.FuncInterface
         bool CreateRequest(Request myRequest);
         bool UpdateRequest(Request myRequest);
         Request getRequestById(int id);
-      //  bool DeleteRequest(Request myRequest);
+        List<Request> GetClosedRequestsToBs(int babysiterId);
+        List<Request> getAllRequestsOfMom(int momId);
+
     }
 }

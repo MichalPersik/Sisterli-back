@@ -13,7 +13,9 @@ namespace SisterliBL.FuncInterface
         bool CreateRequest(RequestDTO Request);
         bool UpdateRequest(RequestDTO Request);
 
-                public List<RequestDTO> GetAllRequest();
-        //   bool DeleteRequest(RequestDTO Request);
+        public List<RequestDTO> GetAllRequest();
+        List<RequestDTO> GetClosedRequestsToBs(int babysiterId);
+        List<RequestDTO> getAllRequestsOfMom(int momId);
+
     }
 }

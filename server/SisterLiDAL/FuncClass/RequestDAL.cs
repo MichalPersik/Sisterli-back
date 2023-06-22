@@ -19,9 +19,9 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                  //  myRequest.NumChildren = null;
-                  //  myRequest.Status = 0;
-                  //  myRequest.IdAgeChildren = null;
+                    //  myRequest.NumChildren = null;
+                    //  myRequest.Status = 0;
+                    //  myRequest.IdAgeChildren = null;
 
                     var user = db.Requests.Where
                         (u => u.Day == myRequest.Day &&
@@ -90,18 +90,79 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                    allRequest = db.Requests.Include(r=>r.IdMomNavigation).Include(m=>m.IdMomNavigation.IdUserNavigation)
-                        .ToList<Request>().FindAll(x=>x.Status == 1 && !CheckTimeIsHover(x.Day));
+                    allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation)
+                        .ToList<Request>().FindAll(x => x.Status == 1 && !CheckTimeIsHover(x.Day));
+                    //allRequest = db.Requests.Where(r => r.Status == 1 && !(r.Day < DateTime.Today))
+                    //    .Select(r => new Request
+                    //    {
+                    //        Id = r.Id,
+                    //        IdBs = r.IdBs,
+                    //        IdMom = r.IdMom,
+                    //        CreatedTime = r.CreatedTime,
+                    //        Day = r.Day,
+                    //        BeginningTime = r.BeginningTime,
+                    //        EndTime = r.EndTime,
+                    //        Status = r.Status,
+                    //        IsSleep = r.IsSleep,
+                    //        IdAgeChildren = r.IdAgeChildren,
+                    //        NumChildren = r.NumChildren,
+                    //        Comment = r.Comment,
+                    //        IsWifi = r.IsWifi,
+                    //        HourlySalary = r.HourlySalary,
+                    //        IdAgeChildrenNavigation = r.IdAgeChildrenNavigation,
+                    //        StatusNavigation = r.StatusNavigation
+                    //    })
+                    //    .ToList<Request>();
+                    //.FindAll(r=>!CheckTimeIsHover(r.Day));
                     //db.SaveChanges();
                     // return allUsers;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine("Unable to get the list of Request");
+                Console.WriteLine("Unable to get the list of Request", ex.Message);
             }
             return allRequest;
         }
+
+        public List<Request> GetClosedRequestsToBs(int babysiterId)
+        {
+            List<Request> allRequest = new List<Request>();
+
+            try
+            {
+                using (var db = new SisterliContext())
+                {
+                    allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation)
+                        .ToList<Request>().FindAll(x => x.IdBs==babysiterId && !CheckTimeIsHover(x.Day));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to get the list of Request", ex.Message);
+            }
+            return allRequest;
+        }
+
+        public List<Request> getAllRequestsOfMom(int momId)
+        {
+            List<Request> allRequest = new List<Request>();
+
+            try
+            {
+                using (var db = new SisterliContext())
+                {
+                    allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation)
+                        .ToList<Request>().FindAll(x => x.IdMom == momId && !CheckTimeIsHover(x.Day));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to get the list of Request", ex.Message);
+            }
+            return allRequest;
+        }
+
         private bool CheckTimeIsHover(DateTime date)
         {
             var dateToDay = DateTime.Today;
@@ -117,17 +178,51 @@ namespace SisterLiDAL.FuncClass
                 using (var db = new SisterliContext())
                 {
 
-                    //  var myRequest = db.Requests.Include(y=>y.IdMom).FirstOrDefault(x => x.Id==id);
                     var myRequest = db.Requests.Include(y => y.IdAgeChildrenNavigation)
                                                .Include(y => y.IdBsNavigation)
-                                               .Include(y => y.IdMomNavigation)//.Select(i => i.Id);
-                                                                               // .Include(y => y.StatusNavigation)
+                                               .ThenInclude(y => y.IdUserNavigation)
+                                               .Include(y => y.IdMomNavigation)
+                                               .ThenInclude(y=> y.IdUserNavigation)
+
 
                     .FirstOrDefault(x => x.Id == id);
-                    ////////  myRequest.FirstOrDefault(x => (x as Request).Id == id);
-                    if (myRequest != null)
-                        return myRequest;//// myRequest;
-                    return null;
+                    return myRequest;
+
+                    //if (myRequest != null)
+                    //{
+                    //    var mom = myRequest.IdMomNavigation;
+                    //    var bs = myRequest.IdBsNavigation;
+                    //    //myRequest.IdBsNavigation.Requests = null;
+                    //    myRequest.IdMomNavigation = new Mom
+                    //    {
+                    //        Id = mom.Id,
+                    //        IdUser = mom.IdUser,
+                    //        IsWifi = mom.IsWifi,
+                    //        HourlySalary = mom.HourlySalary,
+                    //        IsSleep = mom.IsSleep,
+                    //        IdAgeChildren = mom.IdAgeChildren,
+                    //        NumChildren = mom.NumChildren,
+                    //        Comment = mom.Comment,
+                    //        IdAgeChildrenNavigation = mom.IdAgeChildrenNavigation,
+                    //        IdUserNavigation = new User
+                    //        {
+                    //            Id = mom.IdUserNavigation.Id,
+                    //            LastName = mom.IdUserNavigation.LastName,
+                    //            FristName = mom.IdUserNavigation.FristName,
+                    //            Tel = mom.IdUserNavigation.Tel,
+                    //            City = mom.IdUserNavigation.City,
+                    //            Street = mom.IdUserNavigation.Street,
+                    //            GeneryInfo = mom.IdUserNavigation.GeneryInfo,
+                    //            Email = mom.IdUserNavigation.Email,
+                    //            Password = mom.IdUserNavigation.Password
+                    //        }
+                    //    };
+                    //    myRequest.IdBsNavigation = new Babysiter
+                    //    {
+
+                    //    };
+                    //    return myRequest;
+                    //}
                     //return null;
                 }
             }
@@ -146,7 +241,7 @@ namespace SisterLiDAL.FuncClass
                 {
                     var request = db.Requests.Where(u => u.Id == myRequest.Id).AsNoTracking().FirstOrDefault();
                     //  var mom = db.Moms.Where()
-                   if (request != null)
+                    if (request != null)
                     {
                         try
                         {

@@ -6,7 +6,10 @@ using SisterliBL.FuncInterface;
 using SisterLiDAL;
 using SisterLiDAL.FuncClass;
 using SisterLiDAL.FuncInterface;
+using SisterLiDAL.Models;
 using SisterliDTO;
+using Microsoft.AspNetCore.SpaServices;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +53,13 @@ app.UseCors("MyPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+//app.UseSpa(spa =>
+//{
+//    spa.Options.SourcePath = "sisterliClient";
+
+//    spa.UseAngularCliServer(npmScript: "start");
+
+//});
 
 app.MapControllers();
 
