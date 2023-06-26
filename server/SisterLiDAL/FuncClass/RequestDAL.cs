@@ -25,8 +25,8 @@ namespace SisterLiDAL.FuncClass
 
                     var user = db.Requests.Where
                         (u => u.Day == myRequest.Day &&
-                        myRequest.BeginningTime.ToString() == u.BeginningTime.ToString() &&
-                        myRequest.EndTime.ToString() == u.EndTime.ToString() &&
+                        myRequest.BeginningTime.ToString().Equals(u.BeginningTime.ToString()) &&
+                        myRequest.EndTime.ToString().Equals(u.EndTime.ToString()) &&
                         u.IdMom == myRequest.IdMom).FirstOrDefault();
                     if (user == null)
                     {
@@ -80,7 +80,15 @@ namespace SisterLiDAL.FuncClass
         //    }
         //    return false;
         //}
+        public List<StatusRequest> getAllStatus()
+        {
+            using (var db = new SisterliContext())
+            {
+               var allstatus = db.StatusRequests.ToList();
+                return allstatus;
+            }
 
+        }
 
         public List<Request> GetAllRequests()
         {
@@ -134,7 +142,7 @@ namespace SisterLiDAL.FuncClass
                 using (var db = new SisterliContext())
                 {
                     allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation)
-                        .ToList<Request>().FindAll(x => x.IdBs==babysiterId && !CheckTimeIsHover(x.Day));
+                        .ToList<Request>().FindAll(x => x.IdBs == babysiterId && !CheckTimeIsHover(x.Day));
                 }
             }
             catch (Exception ex)
@@ -182,7 +190,7 @@ namespace SisterLiDAL.FuncClass
                                                .Include(y => y.IdBsNavigation)
                                                .ThenInclude(y => y.IdUserNavigation)
                                                .Include(y => y.IdMomNavigation)
-                                               .ThenInclude(y=> y.IdUserNavigation)
+                                               .ThenInclude(y => y.IdUserNavigation)
 
 
                     .FirstOrDefault(x => x.Id == id);

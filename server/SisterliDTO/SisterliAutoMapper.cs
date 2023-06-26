@@ -22,6 +22,8 @@ namespace SisterliDTO
 
             CreateMap<Request, RequestDTO>();
             CreateMap<RequestDTO, Request>();
+            CreateMap<StatusRequestDTO, StatusRequest>();
+            CreateMap<StatusRequest, StatusRequestDTO>();
         }
     }
 }

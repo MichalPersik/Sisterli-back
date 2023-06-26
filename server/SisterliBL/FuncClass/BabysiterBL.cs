@@ -31,12 +31,7 @@ namespace SisterliBL.FuncClass
         public List<BabysiterDTO> GetAllBabysiters()
         {
             List<Babysiter> bAll = babysiterDAL.GetAllBabySiters();
-            List<BabysiterDTO> b = new List<BabysiterDTO>();
-            for (int i = 0; i < bAll.Count; i++)
-            {
-                b.Add(mapper.Map<Babysiter, BabysiterDTO>(bAll[i]));
-            }
-            // List<UserDTO> u = mapper.Map<List<User>, List<UserDTO>>(uAll);
+            List<BabysiterDTO> b = mapper.Map<List<Babysiter>, List<BabysiterDTO>>(bAll);
             return b;
         }
 

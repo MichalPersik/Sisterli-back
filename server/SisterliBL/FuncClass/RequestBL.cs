@@ -81,5 +81,14 @@ namespace SisterliBL.FuncClass
             }
             return r;
         }
+        
+        public List<StatusRequestDTO> getAllStatus()
+        {
+           var result = requestDAL.getAllStatus();
+            List<StatusRequestDTO> res = mapper.Map<List<StatusRequest>, List<StatusRequestDTO>>(result);
+
+            return res;
+            
+        }
     }
 }

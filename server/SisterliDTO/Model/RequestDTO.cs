@@ -19,9 +19,9 @@ namespace SisterliDTO.Model
 
         public DateTime Day { get; set; }
 
-        public TimeSpan BeginningTime { get; set; }
+        public string BeginningTime { get; set; }
 
-        public TimeSpan EndTime { get; set; }
+        public string EndTime { get; set; }
     
         public int Status { get; set; }
 
@@ -36,8 +36,8 @@ namespace SisterliDTO.Model
         public bool? IsWifi { get; set; }
      
         public int? HourlySalary { get; set; }
-        public string City { get; set; }
-        public string LastName { get; set; }
+        public string? City { get; set; }
+        public string? LastName { get; set; }
         // [JsonIgnore]
 
         // public virtual AgeChild? IdAgeChildrenNavigation { get; set; }
@@ -47,7 +47,7 @@ namespace SisterliDTO.Model
         // [JsonIgnore]
 
 
-        public virtual MomDTO IdMomNavigation { get; set; }
+        public virtual MomDTO? IdMomNavigation { get; set; }
         // [JsonIgnore]
 
 

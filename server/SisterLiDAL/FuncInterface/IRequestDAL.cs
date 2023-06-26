@@ -15,6 +15,7 @@ namespace SisterLiDAL.FuncInterface
         Request getRequestById(int id);
         List<Request> GetClosedRequestsToBs(int babysiterId);
         List<Request> getAllRequestsOfMom(int momId);
+        List<StatusRequest> getAllStatus();
 
     }
 }

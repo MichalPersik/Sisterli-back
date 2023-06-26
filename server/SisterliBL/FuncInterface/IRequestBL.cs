@@ -17,5 +17,8 @@ namespace SisterliBL.FuncInterface
         List<RequestDTO> GetClosedRequestsToBs(int babysiterId);
         List<RequestDTO> getAllRequestsOfMom(int momId);
 
+        List<StatusRequestDTO> getAllStatus();
+
+
     }
 }

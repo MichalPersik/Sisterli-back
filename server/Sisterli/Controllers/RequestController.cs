@@ -24,7 +24,7 @@ namespace Sisterli.Controllers
         }
         // POST api/<ValuesController>
         [HttpPost]
-        public bool addRequest(RequestDTO Request)
+        public bool addRequest([FromBody] RequestDTO Request)
         {
             return _IRequestBL.CreateRequest(Request);
         }
@@ -55,6 +55,13 @@ namespace Sisterli.Controllers
         public List<RequestDTO> getAllRequestsOfMom(int momId)
         {
             return _IRequestBL.getAllRequestsOfMom(momId);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public List<StatusRequestDTO> getAllStatus()
+        {
+            return _IRequestBL.getAllStatus();
         }
 
     }
