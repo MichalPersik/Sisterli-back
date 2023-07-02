@@ -19,15 +19,11 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                    //  myRequest.NumChildren = null;
-                    //  myRequest.Status = 0;
-                    //  myRequest.IdAgeChildren = null;
-
                     var user = db.Requests.Where
-                        (u => u.Day == myRequest.Day &&
-                        myRequest.BeginningTime.ToString().Equals(u.BeginningTime.ToString()) &&
-                        myRequest.EndTime.ToString().Equals(u.EndTime.ToString()) &&
-                        u.IdMom == myRequest.IdMom).FirstOrDefault();
+                    (u => u.Day == myRequest.Day &&
+                    myRequest.BeginningTime.ToString().Equals(u.BeginningTime.ToString()) &&
+                    myRequest.EndTime.ToString().Equals(u.EndTime.ToString()) &&
+                    u.IdMom == myRequest.IdMom).FirstOrDefault();
                     if (user == null)
                     {
                         try
@@ -84,7 +80,7 @@ namespace SisterLiDAL.FuncClass
         {
             using (var db = new SisterliContext())
             {
-               var allstatus = db.StatusRequests.ToList();
+                var allstatus = db.StatusRequests.ToList();
                 return allstatus;
             }
 
@@ -179,59 +175,56 @@ namespace SisterLiDAL.FuncClass
 
 
 
+        //if (myRequest != null)
+        //{
+        //    var mom = myRequest.IdMomNavigation;
+        //    var bs = myRequest.IdBsNavigation;
+        //    //myRequest.IdBsNavigation.Requests = null;
+        //    myRequest.IdMomNavigation = new Mom
+        //    {
+        //        Id = mom.Id,
+        //        IdUser = mom.IdUser,
+        //        IsWifi = mom.IsWifi,
+        //        HourlySalary = mom.HourlySalary,
+        //        IsSleep = mom.IsSleep,
+        //        IdAgeChildren = mom.IdAgeChildren,
+        //        NumChildren = mom.NumChildren,
+        //        Comment = mom.Comment,
+        //        IdAgeChildrenNavigation = mom.IdAgeChildrenNavigation,
+        //        IdUserNavigation = new User
+        //        {
+        //            Id = mom.IdUserNavigation.Id,
+        //            LastName = mom.IdUserNavigation.LastName,
+        //            FristName = mom.IdUserNavigation.FristName,
+        //            Tel = mom.IdUserNavigation.Tel,
+        //            City = mom.IdUserNavigation.City,
+        //            Street = mom.IdUserNavigation.Street,
+        //            GeneryInfo = mom.IdUserNavigation.GeneryInfo,
+        //            Email = mom.IdUserNavigation.Email,
+        //            Password = mom.IdUserNavigation.Password
+        //        }
+        //    };
+        //    myRequest.IdBsNavigation = new Babysiter
+        //    {
+
+        //    };
+        //    return myRequest;
+        //}
+        //return null;
+
         public Request getRequestById(int id)
         {
             try
             {
                 using (var db = new SisterliContext())
                 {
-
                     var myRequest = db.Requests.Include(y => y.IdAgeChildrenNavigation)
-                                               .Include(y => y.IdBsNavigation)
-                                               .ThenInclude(y => y.IdUserNavigation)
-                                               .Include(y => y.IdMomNavigation)
-                                               .ThenInclude(y => y.IdUserNavigation)
-
-
-                    .FirstOrDefault(x => x.Id == id);
+                             .Include(y => y.IdBsNavigation)
+                             .ThenInclude(y => y.IdUserNavigation)
+                             .Include(y => y.IdMomNavigation)
+                             .ThenInclude(y => y.IdUserNavigation)
+                             .FirstOrDefault(x => x.Id == id);
                     return myRequest;
-
-                    //if (myRequest != null)
-                    //{
-                    //    var mom = myRequest.IdMomNavigation;
-                    //    var bs = myRequest.IdBsNavigation;
-                    //    //myRequest.IdBsNavigation.Requests = null;
-                    //    myRequest.IdMomNavigation = new Mom
-                    //    {
-                    //        Id = mom.Id,
-                    //        IdUser = mom.IdUser,
-                    //        IsWifi = mom.IsWifi,
-                    //        HourlySalary = mom.HourlySalary,
-                    //        IsSleep = mom.IsSleep,
-                    //        IdAgeChildren = mom.IdAgeChildren,
-                    //        NumChildren = mom.NumChildren,
-                    //        Comment = mom.Comment,
-                    //        IdAgeChildrenNavigation = mom.IdAgeChildrenNavigation,
-                    //        IdUserNavigation = new User
-                    //        {
-                    //            Id = mom.IdUserNavigation.Id,
-                    //            LastName = mom.IdUserNavigation.LastName,
-                    //            FristName = mom.IdUserNavigation.FristName,
-                    //            Tel = mom.IdUserNavigation.Tel,
-                    //            City = mom.IdUserNavigation.City,
-                    //            Street = mom.IdUserNavigation.Street,
-                    //            GeneryInfo = mom.IdUserNavigation.GeneryInfo,
-                    //            Email = mom.IdUserNavigation.Email,
-                    //            Password = mom.IdUserNavigation.Password
-                    //        }
-                    //    };
-                    //    myRequest.IdBsNavigation = new Babysiter
-                    //    {
-
-                    //    };
-                    //    return myRequest;
-                    //}
-                    //return null;
                 }
             }
             catch (Exception ex)
