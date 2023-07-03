@@ -21,7 +21,9 @@ namespace SisterliDTO.Model
         public int? HourlySalary { get; set; }
 
         public string? Opinion { get; set; }
-        public string? FullNamePhone { get; set; }
+        public string? Phone { get; set; }
+        public string? FullName { get; set; }
+
 
         //public virtual AgeChildDTO? AgesChildren { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿
 using Microsoft.EntityFrameworkCore;
 using SisterLiDAL.Models;
 
@@ -19,7 +19,7 @@ namespace SisterLiDAL
             {
                 using (var db = new SisterliContext())
                 {
-                    allBabysiters = db.Babysiters.ToList<Babysiter>();
+                    allBabysiters = db.Babysiters.Include(b=>b.IdUserNavigation).ToList<Babysiter>();
                     //db.SaveChanges();
                     // return allUsers;
                 }
@@ -29,6 +29,14 @@ namespace SisterLiDAL
                 Console.WriteLine("Unable to get the list of users");
             }
             return allBabysiters;
+        }
+
+        public List<Babysiter> GetBabysitersByMom(int momId) 
+        {
+            using (var db = new SisterliContext())
+            {
+                return db.Requests.Where(r => r.IdMom == momId && r.IdBs!=null).Include(r => r.IdBsNavigation.IdUserNavigation).Select(r => r.IdBsNavigation).Distinct().ToList();
+            }
         }
 
         public bool CreateBabySitter(Babysiter myBabySiter)
@@ -57,6 +65,14 @@ namespace SisterLiDAL
             }
             return false;
 
+        }
+
+        public List<string> GetRecomendsByUserId(string idNum) 
+        {
+            using (var db = new SisterliContext())
+            {
+                return db.Babysiters.Where(u => u.IdUser == idNum).Select(u=>u.Opinion).ToList();
+            }
         }
 
 

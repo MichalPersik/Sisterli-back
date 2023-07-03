@@ -14,6 +14,8 @@ namespace SisterLiDAL
         bool UpdateBabySitter(Babysiter myBabySitter);
 
         Babysiter getBabysiterById(string idUser, string password);
+        List<string> GetRecomendsByUserId(string idNum);
+        List<Babysiter> GetBabysitersByMom(int momId);
 
     }
 }

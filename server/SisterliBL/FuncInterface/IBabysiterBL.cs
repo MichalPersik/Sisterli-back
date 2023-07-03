@@ -14,6 +14,8 @@ namespace SisterliBL.FuncInterface
         BabysiterDTO getBabysitterById(string idUser,string password);
         bool CreateBabysitter(BabysiterDTO Babysiter);
         bool UpdateBabysitter(BabysiterDTO Babysiter);
+        List<string> GetRecomendsByUserId(string idNum);
+        List<BabysiterDTO> GetBabysitersByMom(int momId);
 
     }
 }

@@ -46,6 +46,24 @@ namespace SisterliAPI.Controllers
 
             return _BabysiterBL.GetAllBabysiters();
         }
+        [HttpGet]
+        [Route("[action]/{momId}")]
+        public List<BabysiterDTO> GetBabysitersByMom(int momId)
+        {
+            //HttpContext.Response.Headers
+            Response.Headers.AccessControlAllowOrigin = "*";// ("Access-Control-Allow-Origin", "*");
+
+            return _BabysiterBL.GetBabysitersByMom(momId);
+        }
+        [HttpGet]
+        [Route("[action]/{idNum}")]
+        public List<string> GetRecomendsByUserId(string idNum)
+        {
+            //HttpContext.Response.Headers
+            Response.Headers.AccessControlAllowOrigin = "*";// ("Access-Control-Allow-Origin", "*");
+
+            return _BabysiterBL.GetRecomendsByUserId(idNum);
+        }
         //[HttpGet]
         //[Route("[action]")]
         //public List<BabysiterDTO> GetAllBabysiters()
