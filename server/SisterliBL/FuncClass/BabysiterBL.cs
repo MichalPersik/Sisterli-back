@@ -34,7 +34,8 @@ namespace SisterliBL.FuncClass
 
             List<BabysiterDTO> b = mapper.Map<List<Babysiter>, List<BabysiterDTO>>(bAll);
             int index = 0;
-            b.ForEach(e => { e.FullName = bAll[index].IdUserNavigation.FristName + " " + bAll[index].IdUserNavigation.LastName; e.Phone = bAll[index].IdUserNavigation.Tel; index++; });
+            b.ForEach(e => { e.FullName = bAll[index].IdUserNavigation.FristName + " " + bAll[index].IdUserNavigation.LastName; e.Phone = bAll[index].IdUserNavigation.Tel;
+                bAll[index].IdUserNavigation = null; index++;  });
             return b;
         }
 
@@ -45,7 +46,7 @@ namespace SisterliBL.FuncClass
             List<BabysiterDTO> b = mapper.Map<List<Babysiter>, List<BabysiterDTO>>(bAll);
             int index = 0;
             b.ForEach(e => { e.FullName = bAll[index].IdUserNavigation.FristName + " " + bAll[index].IdUserNavigation.LastName; e.Phone = bAll[index].IdUserNavigation.Tel; index++; });
-            return b;
+             return b;
         }
 
         public BabysiterDTO getBabysitterById(string idUser, string password)
@@ -60,8 +61,6 @@ namespace SisterliBL.FuncClass
         }
 
         public bool UpdateBabysitter(BabysiterDTO myBabysiter)
-
-
         {
             /// myBabysiter.AgesChildren = null;לבדוק מה עם שורה זו
             Babysiter Babysiter = mapper.Map<Babysiter>(myBabysiter);

@@ -43,8 +43,7 @@ namespace SisterliDTO.Model
         // public virtual AgeChild? IdAgeChildrenNavigation { get; set; }
         // [JsonIgnore]
 
-        //public virtual Babysiter? IdBsNavigation { get; set; }
-        // [JsonIgnore]
+       // [JsonIgnore]
 
 
         public virtual MomDTO? IdMomNavigation { get; set; }

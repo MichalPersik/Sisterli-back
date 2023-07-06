@@ -25,6 +25,7 @@ namespace SisterliDTO.Model
         public int? NumChildren { get; set; }
 
         public string? Comment { get; set; }
+        public string? Phone { get; set; }
 
         public virtual AgeChildDTO? IdAgeChildrenNavigation { get; set; }
 

@@ -65,6 +65,7 @@ namespace SisterliBL.FuncClass
             for (int i = 0; i < AllRequest.Count; i++)
             {
                 r[i].LastName = AllRequest[i].IdMomNavigation?.IdUserNavigation?.LastName;
+                r[i].IdMomNavigation.Phone = AllRequest[i].IdMomNavigation?.IdUserNavigation?.Tel;
                 r[i].City = AllRequest[i].IdMomNavigation?.IdUserNavigation?.City;
             }
             return r;
