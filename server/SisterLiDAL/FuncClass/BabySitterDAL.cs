@@ -71,7 +71,7 @@ namespace SisterLiDAL
         {
             using (var db = new SisterliContext())
             {
-                return db.Babysiters.Where(u => u.IdUser == idNum).Select(u=>u.Opinion).ToList();
+                return db.Requests.Where(r => r.IdBsNavigation.IdUser == idNum).Select(r=>r.MomOpinion).ToList();
             }
         }
 

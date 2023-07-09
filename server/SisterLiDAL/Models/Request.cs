@@ -27,6 +27,7 @@ public partial class Request
     public int? NumChildren { get; set; }
 
     public string? Comment { get; set; }
+    public string? MomOpinion { get; set; }
 
     public bool? IsWifi { get; set; }
 

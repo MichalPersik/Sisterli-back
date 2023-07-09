@@ -23,7 +23,7 @@ namespace SisterliDTO.Model
 
         public string EndTime { get; set; }
     
-        public int Status { get; set; }
+        public int? Status { get; set; }
 
         public bool? IsSleep { get; set; }
     
@@ -32,7 +32,8 @@ namespace SisterliDTO.Model
         public int? NumChildren { get; set; }
  
         public string? Comment { get; set; }
-  
+        public string? MomOpinion { get; set; }
+
         public bool? IsWifi { get; set; }
      
         public int? HourlySalary { get; set; }
