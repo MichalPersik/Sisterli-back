@@ -156,7 +156,7 @@ namespace SisterLiDAL.FuncClass
             {
                 using (var db = new SisterliContext())
                 {
-                    allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation)
+                    allRequest = db.Requests.Include(r => r.IdMomNavigation).Include(m => m.IdMomNavigation.IdUserNavigation).OrderBy(x => x.Day)
                         .ToList<Request>().FindAll(x => x.IdMom == momId && !CheckTimeIsHover(x.Day));
                 }
             }
@@ -247,8 +247,6 @@ namespace SisterLiDAL.FuncClass
                         try
                         {
                             db.Requests.Update(myRequest);
-
-
                             db.SaveChanges();
                             return true;
                         }

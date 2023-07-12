@@ -125,7 +125,7 @@ public partial class SisterliContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.BeginningTime).HasColumnName("beginning_time");
             entity.Property(e => e.Comment).HasColumnName("comment");
-            entity.Property(e => e.Comment).HasColumnName("momOpinion");
+            entity.Property(e => e.MomOpinion).HasColumnName("momOpinion");
             entity.Property(e => e.Day)
                 .HasColumnType("date")
                 .HasColumnName("day");
